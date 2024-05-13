@@ -1,26 +1,25 @@
-function isValidSudoku(board) {
-  for (let i = 0; i < 9; i++) {
-    const row = new Set();
-    const col = new Set();
-    const box = new Set();
-    for (let j = 0; j < 9; j++) {
-      const rowVal = board[i][j];
-      const colVal = board[j][i];
-      const boxVal =
-        board[3 * Math.floor(i / 3) + Math.floor(j / 3)][3 * (i % 3) + (j % 3)];
-      if (rowVal !== ".") {
-        if (row.has(rowVal)) return false;
-        row.add(rowVal);
+function trap(height) {
+  let totalWater = 0;
+  let left = 0;
+  let right = height.length - 1;
+  let maxLeft = 0;
+  let maxRight = 0;
+  while (left < right) {
+    if (height[left] < height[right]) {
+      if (height[left] >= maxLeft) {
+        maxLeft = height[left];
+      } else {
+        totalWater += maxLeft - height[left];
       }
-      if (colVal !== ".") {
-        if (col.has(colVal)) return false;
-        col.add(colVal);
+      left++;
+    } else {
+      if (height[right] >= maxRight) {
+        maxRight = height[right];
+      } else {
+        totalWater += maxRight - height[right];
       }
-      if (boxVal !== ".") {
-        if (box.has(boxVal)) return false;
-        box.add(boxVal);
-      }
+      right--;
     }
   }
-  return true;
+  return totalWater;
 }
