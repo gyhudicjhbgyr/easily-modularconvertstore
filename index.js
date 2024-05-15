@@ -1,3 +1,8 @@
-function findNumbers(nums) {
-  return nums.filter((num) => num.toString().length % 2 === 0).length;
-}
+const linearSearch = (arr, target) => {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      return i;
+    }
+  }
+  return -1;
+};
