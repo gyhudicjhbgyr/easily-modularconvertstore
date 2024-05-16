@@ -1,8 +1,10 @@
-const linearSearch = (arr, target) => {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === target) {
-      return i;
-    }
+function hasCycle(head) {
+  let slow = head;
+  let fast = head;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+    if (slow === fast) return true;
   }
-  return -1;
-};
+  return false;
+}
